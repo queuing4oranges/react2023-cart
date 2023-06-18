@@ -11,8 +11,9 @@ console.log(newCartItems)
 //set up initial state as an object instead of array, as you can add more properties of diff. kind
 const initialState = {
     loading: false, 
-    cart: new Map(newCartItems)    
+    cart: new Map(newCartItems),    
     //set up diff as it has other data structure
+    amount: 0
 }
 
 
@@ -27,8 +28,8 @@ export default function AppContext(props) {
     dispatch({type: REMOVE_ITEM, payload: { id: id} })
   }
 
-  const increaseAmount = () => {
-    dispatch({type: INCREASE})
+  const increaseAmount = (id) => {
+    dispatch({type: INCREASE, payload: { id: id}})
   }
 
   const decreaseAmount = () => {
