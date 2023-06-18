@@ -13,7 +13,6 @@ const initialState = {
     loading: false, 
     cart: new Map(newCartItems),    
     //set up diff as it has other data structure
-    amount: 0
 }
 
 
@@ -32,8 +31,8 @@ export default function AppContext(props) {
     dispatch({type: INCREASE, payload: { id: id}})
   }
 
-  const decreaseAmount = () => {
-    dispatch({type: DECREASE})
+  const decreaseAmount = (id) => {
+    dispatch({type: DECREASE, payload: { id: id}})
   }
  
     return (
