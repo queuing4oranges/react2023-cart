@@ -1,24 +1,13 @@
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import { useReducer } from 'react';
-import { CLEAR_CART, REMOVE_ITEM, INCREASE, DECREASE} from './actions';
 import  reducer from './reducer';
+import { useGlobalContext } from './context';
+
 
 const CartItem = ({ id, img, title, price, amount }) => {
+  const { removeItem } = useGlobalContext();
 
-  // const [ state, dispatch ] = useReducer(reducer, defaultState)
-  // console.log(state, dispatch)
 
-  const removeItem = (id) => {
-    dispatch({type: REMOVE_ITEM, payload: { id: id} })
-  }
-
-  const increaseAmount = () => {
-    dispatch({type: INCREASE})
-  }
-
-  const decreaseAmount = () => {
-    dispatch({type: DECREASE})
-  }
 
   return (
     <article className='cart-item'>

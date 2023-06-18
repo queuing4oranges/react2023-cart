@@ -1,21 +1,17 @@
 import CartItem from './CartItem';
 import cartItems from './data';
 import { useGlobalContext } from './context';
-import { useReducer } from 'react';
-import { CLEAR_CART } from './actions';
-
 
 
 const CartContainer = () => {
-  const { cart, defaultState, reducer } = useGlobalContext();
-  const [ state, dispatch ] = useReducer(reducer, defaultState)
-  const cartArray = [...cartItems];
-  const amount = cartArray.length
+  //getting the car from the useGlobalContext
+  const { cart, clearCart } = useGlobalContext();
 
+  //to get an array to iterate over for rendering, we need to use Array.from
+  //entries = gives us both - key AND value and not just single
+  const cartArray = Array.from(cart.entries())
   
-  const clearCart = () => {
-    dispatch({type: CLEAR_CART})
-  }
+
 
   if (cartArray.length === 0) {
     return (
@@ -37,7 +33,10 @@ const CartContainer = () => {
       {/* cart items */}
       <div>
         {cartArray.map((cartItem) => {
-          return <CartItem key={cartItem.id} {...cartItem} amount={amount} />;
+          //destructuring for readability:
+          const [id, item] = cartItem
+          //not spreading out cartItem but Item (it's nested!)
+           return <CartItem key={id} {...item} />;
         })}
       </div>
       {/* cart footer */}
@@ -50,7 +49,7 @@ const CartContainer = () => {
         </div>
         <button
           className='btn btn-hipster'
-          onClick={() => clearCart()}
+          onClick={clearCart}
         >
           clear cart
         </button>

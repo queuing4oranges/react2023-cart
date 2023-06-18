@@ -9,17 +9,19 @@ import {
 import cartItems from "./data";
 
 //creating new Map instance from cartItems data
-const cartMap = new Map(cartItems);
-const cartArray = Array.from(cartMap.entries());
-const amount = cartArray.length;
+// const cartMap = new Map(cartItems);
+// const cartArray = Array.from(cartMap.entries());
+// const amount = cartArray.length;
 
 const reducer = (state, action) => {
   if (action.type === CLEAR_CART) {
-    return { ...state, cart: cart.set(new Map()) };
+    return { ...state, cart: new Map() };
   }
   if (action.type === REMOVE_ITEM) {
-    let newArr = cartArray.filter((item) => item.id !== action.payload.id);
-    return { ...state, cart: cart.set(newArr) };
+    const newCart = new Map(state.cart);
+    newCart.delete(action.payload.id);
+
+    return { ...state, cart: newCart };
   }
   if (action.type === INCREASE) {
     return { ...state, amount: amount.set(amount + 1) };
