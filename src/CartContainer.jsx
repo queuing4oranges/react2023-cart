@@ -1,11 +1,10 @@
 import CartItem from './CartItem';
-import cartItems from './data';
 import { useGlobalContext } from './context';
 
 
 const CartContainer = () => {
   //getting the car from the useGlobalContext
-  const { cart, clearCart } = useGlobalContext();
+  const { cart, clearCart, totalCost } = useGlobalContext();
 
   //to get an array to iterate over for rendering, we need to use Array.from
   //entries = gives us both - key AND value and not just single
@@ -44,7 +43,7 @@ const CartContainer = () => {
         <hr />
         <div>
           <h5 className='cart-total'>
-            total <span>$10</span>
+            total <span>$ {totalCost.toFixed(2)}</span>
           </h5>
         </div>
         <button

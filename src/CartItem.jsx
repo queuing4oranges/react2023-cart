@@ -1,6 +1,4 @@
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
-import { useReducer } from 'react';
-import  reducer from './reducer';
 import { useGlobalContext } from './context';
 
 
